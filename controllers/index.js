@@ -1,4 +1,4 @@
-const Contact = require('../model/contact')
+const { Contact } = require('../model/contact')
 const { NotFound } = require('http-errors')
 
 const listContacts = async (_, res) => {
@@ -13,7 +13,6 @@ const listContacts = async (_, res) => {
 }
 const getContactById = async (req, res) => {
   const { contactId } = req.params
-  console.log(Contact)
   const result = await Contact.findById(contactId)
   if (!result) {
     throw new NotFound(`Product with id=${contactId} not found`)
@@ -75,10 +74,10 @@ const updateStatusContact = async (req, res) => {
     throw new NotFound('missing field favorite')
   }
   const { contactId } = req.params
-  const { price } = req.body
+  const { favorite } = req.body
   const result = await Contact.findByIdAndUpdate(
     contactId,
-    { price },
+    { favorite },
     { new: true }
   )
   if (!result) {

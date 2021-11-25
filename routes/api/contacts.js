@@ -23,7 +23,6 @@ router.delete('/:contactId', controllerWrapper(removeContact))
 
 router.put(
   '/:contactId',
-  validation(joiSchema),
   controllerWrapper(updateContact)
 )
 
